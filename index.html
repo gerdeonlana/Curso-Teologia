@@ -8,114 +8,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="preconnect" href="https://player-vz-7f856cd6-618.tv.pandavideo.com.br">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://player-vz-7f856cd6-618.tv.pandavideo.com.br">
     
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: { 
-              montserrat: ['Montserrat', 'sans-serif'], 
-              poppins: ['Poppins', 'sans-serif'] 
-            },
-            colors: { 
-              brand: { orange: '#FF7A00', 'orange-dark': '#E66E00', 'bg-dark': '#080808', 'bg-card': '#111111' } 
-            },
-            animation: {
-              'pulse-fast': 'pulse-fast 1.5s infinite ease-in-out',
-              'float': 'float 3s infinite ease-in-out',
-            },
-            keyframes: {
-              'pulse-fast': { 
-                '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(255, 122, 0, 0.4)' }, 
-                '50%': { transform: 'scale(1.05)', boxShadow: '0 0 40px 15px rgba(255, 122, 0, 0.2)' } 
-              },
-              'float': {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-15px)' }
-              }
-            }
-          }
-        }
-      }
-    </script>
-    
-    <style>
-      @font-face { font-display: swap; }
-      body { 
-        background-color: #000; color: #fff; -webkit-font-smoothing: antialiased; 
-        font-family: 'Poppins', sans-serif; overflow-x: hidden;
-      }
-      h1, h2, h3, .font-title { font-family: 'Montserrat', sans-serif; }
-      
-      section { content-visibility: auto; contain-intrinsic-size: 1px 500px; }
-      #hero-section { content-visibility: visible; }
-      .text-glow { text-shadow: 0 0 20px rgba(255, 122, 0, 0.6); }
-      
-      .reveal { 
-        opacity: 0; transform: translateY(30px) translateZ(0); 
-        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        will-change: opacity, transform;
-      }
-      .reveal.active { opacity: 1; transform: translateY(0) translateZ(0); }
-      
-      #hero-section .reveal {
-        animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      @keyframes heroReveal {
-        to { opacity: 1; transform: translateY(0) translateZ(0); }
-      }
-      
-      .btn-shine { position: relative; overflow: hidden; transform: translateZ(0); }
-      .btn-shine::after {
-        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-        background: rgba(255,255,255,0.25); transform: rotate(45deg); transition: 0.8s; opacity: 0;
-      }
-      .btn-shine:hover::after { opacity: 1; left: 120%; top: 120%; }
-      
-      .faq-content { max-height: 0; overflow: hidden; transition: all 0.4s ease-in-out; opacity: 0; }
-      .faq-item.active .faq-content { max-height: 500px; padding-bottom: 2rem; opacity: 1; }
-      .faq-item.active .faq-icon { transform: rotate(180deg); color: #FF7A00; }
-      .bg-glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-      
-      .module-pill {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        padding: 0.75rem 1.25rem;
-        border-radius: 1rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #d1d5db;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        transition: all 0.3s ease;
-      }
-      .module-pill:hover {
-        background: rgba(255, 122, 0, 0.1);
-        border-color: #FF7A00;
-        color: #fff;
-        transform: translateY(-2px);
-      }
-      .module-number {
-        font-family: 'Montserrat', sans-serif;
-        color: #FF7A00;
-        font-weight: 900;
-      }
-
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #000; }
-      ::-webkit-scrollbar-thumb { background: #FF7A00; border-radius: 10px; }
-    </style>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 <body class="selection:bg-brand-orange selection:text-black">
 
@@ -148,16 +47,23 @@
 
             <!-- Video de Apresentação -->
             <div id="hero-video-wrapper" class="reveal w-full max-w-4xl mx-auto mb-8 md:mb-16 px-1 md:px-0">
-                <div id="video-card-container" class="aspect-video w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(255,122,0,0.15)] bg-black/40 backdrop-blur-sm relative group hover:border-brand-orange/40 transition-all duration-500">
-                    <iframe 
-                        id="hero-lecture-video"
-                        class="absolute top-0 left-0 w-full h-full"
-                        src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=d0843b6d-3026-488e-bb01-218ffc973bfe" 
-                        title="Academia Teológica Prática - Vídeo de Apresentação" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
+                <div id="video-card-container" class="aspect-video w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(255,122,0,0.15)] bg-black/40 backdrop-blur-sm relative group hover:border-brand-orange/40 transition-all duration-500 cursor-pointer" onclick="loadVideo()">
+                    <!-- Optimized Video Facade Placeholder -->
+                    <div id="video-placeholder" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#111111] via-[#050505] to-black">
+                        <!-- Decorative glow -->
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,122,0,0.06)_0%,_transparent_75%)] animate-pulse"></div>
+                        
+                        <!-- Glowing Animated Play Button -->
+                        <div class="relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-brand-orange text-black flex items-center justify-center shadow-[0_0_40px_rgba(255,122,0,0.3)] transition-all duration-300 transform group-hover:scale-110 group-hover:bg-white shrink-0">
+                            <svg class="w-6 h-6 md:w-10 md:h-10 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <!-- Ping Ring animation -->
+                            <div class="absolute inset-0 rounded-full border-2 border-brand-orange animate-ping opacity-25"></div>
+                        </div>
+                        
+                        <span class="relative z-10 mt-4 md:mt-6 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-brand-orange transition-colors">Clique para Assistir a Apresentação</span>
+                    </div>
                 </div>
             </div>
 
@@ -723,17 +629,17 @@
                         </div>
 
                         <!-- 3D Mockup of the Product Box Set -->
-                        <div class="my-6 flex justify-center items-center select-none reveal">
-                            <img src="./mockup_premium.png" loading="lazy" decoding="async" alt="Academia Teológica Prática Premium Mockup" class="w-full max-w-[280px] md:max-w-[340px] h-auto object-contain transform hover:scale-105 transition-all duration-500 ease-out drop-shadow-[0_15px_30px_rgba(0,0,0,0.15)] hover:drop-shadow-[0_20px_45px_rgba(255,122,0,0.15)]">
+                        <div class="my-6 flex justify-center items-center select-none">
+                            <img src="./mockup_premium.png" width="340" height="340" loading="lazy" decoding="async" alt="Academia Teológica Prática Premium Mockup" class="w-full max-w-[280px] md:max-w-[340px] h-auto aspect-square object-contain transform hover:scale-105 transition-all duration-500 ease-out drop-shadow-[0_15px_30px_rgba(0,0,0,0.15)] hover:drop-shadow-[0_20px_45px_rgba(255,122,0,0.15)]">
                         </div>
 
                         <!-- Price display -->
                         <div class="text-center my-6">
                             <span class="text-gray-400 line-through text-sm md:text-base block mb-1">De R$ 497,00</span>
-                            <span class="text-red-500 italic font-extrabold text-sm md:text-base uppercase tracking-wider block mb-2">APENAS 6X DE R$ 11,35</span>
+                            <span class="text-red-500 italic font-extrabold text-sm md:text-base uppercase tracking-wider block mb-2">5x R$ 6,86</span>
                             <div class="flex items-baseline justify-center gap-1">
                                 <span class="text-gray-400 text-xs md:text-sm font-bold lowercase">ou</span>
-                                <span class="text-black font-montserrat font-black text-5xl md:text-7xl tracking-tighter">R$ 59,90</span>
+                                <span class="text-black font-montserrat font-black text-5xl md:text-7xl tracking-tighter">R$ 29,90</span>
                                 <span class="text-gray-400 text-xs md:text-sm font-bold lowercase">à vista</span>
                             </div>
                         </div>
@@ -747,7 +653,25 @@
                                 <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
                                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
                                 </div>
-                                <span class="text-sm md:text-base font-bold text-black">TUDO do Essencial</span>
+                                <span class="text-sm md:text-base font-bold text-black">35 módulos completos</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm md:text-base font-bold text-black">Aulas em vídeo</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm md:text-base font-bold text-black">Garantia de 30 dias</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm md:text-base font-bold text-black">Pagamento único</span>
                             </li>
                             <li class="flex items-center gap-3 text-gray-700">
                                 <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
@@ -803,18 +727,12 @@
                                 </div>
                                 <span class="text-sm md:text-base font-medium">Atualizações futuras incluídas</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
-                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
-                                </div>
-                                <span class="text-sm md:text-base font-medium">Garantia de 30 dias</span>
-                            </li>
                         </ul>
                     </div>
 
                     <!-- CTA Button -->
                     <div class="mt-auto">
-                        <a href="https://ggcheckout.app/checkout/v5/N8VAVwYYLWfs6dvqcfJx" class="btn-shine w-full bg-[#1cd05d] hover:bg-[#15af4c] text-white font-black text-lg py-5 px-6 rounded-2xl text-center flex items-center justify-center gap-2 uppercase transition-all shadow-[0_5px_15px_rgba(28,208,93,0.3)]">
+                        <a href="https://ggcheckout.app/checkout/v5/mlwegICJB3FsEYBllKhY" class="btn-shine w-full bg-[#1cd05d] hover:bg-[#15af4c] text-white font-black text-lg py-5 px-6 rounded-2xl text-center flex items-center justify-center gap-2 uppercase transition-all shadow-[0_5px_15px_rgba(28,208,93,0.3)]">
                             QUERO ACESSO COMPLETO ➔
                         </a>
                     </div>
@@ -932,6 +850,23 @@
 
 
     <script>
+        function loadVideo() {
+            const container = document.getElementById('video-card-container');
+            if (container) {
+                container.innerHTML = `
+                    <iframe 
+                        id="hero-lecture-video"
+                        class="absolute top-0 left-0 w-full h-full"
+                        src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=d0843b6d-3026-488e-bb01-218ffc973bfe&autoplay=true" 
+                        title="Academia Teológica Prática - Vídeo de Apresentação" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+            }
+        }
+
         const prog = document.getElementById('scroll-progress');
         let ticking = false;
         function updateProgress() {
@@ -944,7 +879,7 @@
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1, rootMargin: '120px' });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
         document.addEventListener('click', (e) => {

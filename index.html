@@ -9,12 +9,113 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://player-vz-7f856cd6-618.tv.pandavideo.com.br">
+    <link rel="preconnect" href="https://cdn.pandavideo.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://player-vz-7f856cd6-618.tv.pandavideo.com.br">
+    <link rel="dns-prefetch" href="https://cdn.pandavideo.com">
+    <link rel="preload" as="image" href="https://cdn.pandavideo.com/vz-7f856cd6-618/d0843b6d-3026-488e-bb01-218ffc973bfe/thumbnail.jpg">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/index.css">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-orange': '#FF7A00',
+              'brand-orange-dark': '#E66E00',
+              'brand-bg-dark': '#080808',
+              'brand-bg-card': '#111111',
+            },
+            fontFamily: {
+              montserrat: ['Montserrat', 'sans-serif'],
+              poppins: ['Poppins', 'sans-serif'],
+            },
+            animation: {
+              'pulse-fast': 'pulse-fast 1.5s infinite ease-in-out',
+              'float': 'float 3s infinite ease-in-out',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      @keyframes pulse-fast {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4); } 
+        50% { transform: scale(1.05); box-shadow: 0 0 40px 15px rgba(255, 122, 0, 0.2); }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+
+      body { 
+        background-color: #000; color: #fff; -webkit-font-smoothing: antialiased; 
+        font-family: 'Poppins', sans-serif; overflow-x: hidden;
+      }
+      h1, h2, h3, .font-title { font-family: 'Montserrat', sans-serif; }
+      
+      .text-glow { text-shadow: 0 0 20px rgba(255, 122, 0, 0.6); }
+      
+      .reveal { 
+        opacity: 0; transform: translateY(30px) translateZ(0); 
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.active { opacity: 1; transform: translateY(0) translateZ(0); }
+      
+      #hero-section .reveal {
+        animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      @keyframes heroReveal {
+        to { opacity: 1; transform: translateY(0) translateZ(0); }
+      }
+      
+      .btn-shine { position: relative; overflow: hidden; transform: translateZ(0); }
+      .btn-shine::after {
+        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: rgba(255,255,255,0.25); transform: rotate(45deg); transition: 0.8s; opacity: 0;
+      }
+      .btn-shine:hover::after { opacity: 1; left: 120%; top: 120%; }
+      
+      .faq-content { max-height: 0; overflow: hidden; transition: all 0.4s ease-in-out; opacity: 0; }
+      .faq-item.active .faq-content { max-height: 500px; padding-bottom: 2rem; opacity: 1; }
+      .faq-item.active .faq-icon { transform: rotate(180deg); color: #FF7A00; }
+      .bg-glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+      
+      .module-pill {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 0.75rem 1.25rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #d1d5db;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+      }
+      .module-pill:hover {
+        background: rgba(255, 122, 0, 0.1);
+        border-color: #FF7A00;
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .module-number {
+        font-family: 'Montserrat', sans-serif;
+        color: #FF7A00;
+        font-weight: 900;
+      }
+      
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #000; }
+      ::-webkit-scrollbar-thumb { background: #FF7A00; border-radius: 10px; }
+    </style>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -30,6 +131,120 @@
       fbq('track', 'PageView');
     </script>
     <!-- End Facebook Pixel Code -->
+
+    <!-- UTM Tracker Script -->
+    <script>
+    (function () {
+      if (window.__utmScriptLoaded) return;
+      window.__utmScriptLoaded = true;
+
+      var FIELDS = ["src", "sck", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+      var STORAGE_KEY = "__utm_params";
+
+      function parseQuery(search) {
+        var params = {};
+        try {
+          if (!search) return params;
+          if (search.charAt(0) === "?") search = search.substring(1);
+          search.split("&").forEach(function(part) {
+            if (!part) return;
+            var kv = part.split("=");
+            var k = decodeURIComponent(kv[0] || "");
+            var v = decodeURIComponent(kv.slice(1).join("=") || "");
+            if (k) params[k] = v;
+          });
+        } catch (e) {}
+        return params;
+      }
+
+      function getUtmParams() {
+        var fromUrl = parseQuery(window.location.search);
+        var relevant = {};
+        var found = false;
+
+        FIELDS.forEach(function(f) {
+          if (fromUrl[f]) {
+            relevant[f] = fromUrl[f];
+            found = true;
+          }
+        });
+
+        if (found) {
+          try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(relevant)); } catch(e) {}
+          return relevant;
+        }
+
+        try {
+          var stored = sessionStorage.getItem(STORAGE_KEY);
+          if (stored) return JSON.parse(stored);
+        } catch(e) {}
+
+        return {};
+      }
+
+      function applyParamsToHref(href, params) {
+        try {
+          var url = new URL(href, window.location.href);
+          var changed = false;
+          FIELDS.forEach(function(f) {
+            if (params[f] && url.searchParams.get(f) !== params[f]) {
+              url.searchParams.set(f, params[f]);
+              changed = true;
+            }
+          });
+          return changed ? url.href : null;
+        } catch(e) {
+          return null;
+        }
+      }
+
+      function applyParams() {
+        var params = getUtmParams();
+        if (!Object.keys(params).length) return;
+
+        var links = document.getElementsByTagName("a");
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i];
+          try {
+            var raw = link.getAttribute("href");
+            if (!raw) continue;
+            var lower = raw.toLowerCase();
+            if (raw.charAt(0) === "#" ||
+                lower.indexOf("mailto:") === 0 ||
+                lower.indexOf("tel:") === 0 ||
+                lower.indexOf("javascript:") === 0) continue;
+
+            var newHref = applyParamsToHref(link.href, params);
+            if (newHref) link.href = newHref;
+          } catch(e) {}
+        }
+      }
+
+      var interval = setInterval(applyParams, 500);
+      setTimeout(function() { clearInterval(interval); }, 30000);
+
+      if (typeof MutationObserver !== 'undefined' && document.body) {
+        try {
+          var observer = new MutationObserver(function(mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+              if (mutations[i].addedNodes.length > 0) {
+                applyParams();
+                break;
+              }
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+        } catch(e) {}
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener("DOMContentLoaded", applyParams);
+      } else {
+        applyParams();
+      }
+
+    })();
+    </script>
 </head>
 <body class="selection:bg-brand-orange selection:text-black">
     <!-- Facebook Pixel Noscript Fallback -->
@@ -37,21 +252,12 @@
       <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1283010196910930&ev=PageView&noscript=1" />
     </noscript>
 
-    <nav class="fixed top-0 left-0 w-full z-[1000] border-b border-white/5 bg-black/80 backdrop-blur-md py-4 px-6 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center font-black text-black text-xl">A</div>
-            <span class="font-black text-sm tracking-tighter uppercase hidden md:block">Academia Teológica Prática</span>
-        </div>
-        <div class="flex items-center gap-4">
-        </div>
-    </nav>
-
     <div class="fixed top-0 left-0 w-full h-1 z-[1100]">
         <div id="scroll-progress" class="h-full bg-brand-orange w-0 transition-transform duration-75 origin-left"></div>
     </div>
 
     <!-- Hero Section -->
-    <section id="hero-section" class="relative min-h-0 md:min-h-screen flex flex-col justify-center items-center px-4 pt-20 md:pt-32 pb-12 md:pb-24 text-center overflow-hidden">
+    <section id="hero-section" class="relative min-h-0 md:min-h-screen flex flex-col justify-center items-center px-4 pt-10 md:pt-16 pb-12 md:pb-24 text-center overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] aspect-square bg-[radial-gradient(circle_at_center,_rgba(255,122,0,0.15)_0%,_transparent_60%)] -z-10 opacity-50"></div>
         <div class="relative z-10 max-w-6xl mx-auto">
             <div class="reveal inline-block px-4 py-1.5 md:px-5 md:py-2 bg-white/5 border border-white/10 rounded-full mb-4 md:mb-8 text-xs">
@@ -65,29 +271,45 @@
             </p>
 
             <!-- Video de Apresentação -->
-            <div id="hero-video-wrapper" class="reveal w-full max-w-4xl mx-auto mb-8 md:mb-16 px-1 md:px-0">
-                <div id="video-card-container" class="aspect-video w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(255,122,0,0.15)] bg-black/40 backdrop-blur-sm relative group hover:border-brand-orange/40 transition-all duration-500 cursor-pointer" onclick="loadVideo()">
-                    <!-- Optimized Video Facade Placeholder -->
-                    <div id="video-placeholder" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#111111] via-[#050505] to-black">
-                        <!-- Decorative glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,122,0,0.06)_0%,_transparent_75%)] animate-pulse"></div>
+            <div id="hero-video-wrapper" class="reveal w-full max-w-4xl mx-auto mb-6 md:mb-10 px-1 md:px-0">
+                <div id="video-card-container" class="aspect-video w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(255,122,0,0.15)] bg-black relative group hover:border-brand-orange/50 transition-all duration-500 cursor-pointer" onclick="loadVideo()">
+                    <!-- Optimized Video Facade Placeholder with Real Video Thumbnail -->
+                    <div id="video-placeholder" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center overflow-hidden">
+                        <!-- Real Video Thumbnail Background Image -->
+                        <img 
+                            src="https://cdn.pandavideo.com/vz-7f856cd6-618/d0843b6d-3026-488e-bb01-218ffc973bfe/thumbnail.jpg" 
+                            alt="Apresentação Academia Teológica Prática" 
+                            class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                            loading="eager"
+                            fetchpriority="high"
+                        />
+
+                        <!-- Cinematic Overlay for High Contrast & Play Button Visibility -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/50 group-hover:via-black/20 transition-colors duration-500"></div>
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,122,0,0.18)_0%,_transparent_70%)] opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
                         <!-- Glowing Animated Play Button -->
-                        <div class="relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-brand-orange text-black flex items-center justify-center shadow-[0_0_40px_rgba(255,122,0,0.3)] transition-all duration-300 transform group-hover:scale-110 group-hover:bg-white shrink-0">
+                        <div class="relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-brand-orange text-black flex items-center justify-center shadow-[0_0_50px_rgba(255,122,0,0.5)] transition-all duration-300 transform group-hover:scale-110 group-hover:bg-white shrink-0">
                             <svg class="w-6 h-6 md:w-10 md:h-10 fill-current translate-x-0.5" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
                             <!-- Ping Ring animation -->
-                            <div class="absolute inset-0 rounded-full border-2 border-brand-orange animate-ping opacity-25"></div>
+                            <div class="absolute inset-0 rounded-full border-2 border-brand-orange animate-ping opacity-40"></div>
                         </div>
                         
-                        <span class="relative z-10 mt-4 md:mt-6 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-brand-orange transition-colors">Clique para Assistir a Apresentação</span>
+                        <!-- Action Badge / Prompt -->
+                        <div class="relative z-10 mt-4 md:mt-6 px-5 py-2 rounded-full bg-black/70 backdrop-blur-md border border-white/15 group-hover:border-brand-orange/60 transition-all duration-300 shadow-lg">
+                            <span class="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-white group-hover:text-brand-orange transition-colors flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                                Clique para Assistir a Apresentação
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="reveal flex flex-col items-center gap-8">
-                <a href="#para-quem-e-este-curso" class="btn-shine bg-brand-orange hover:bg-white text-black px-12 py-8 md:px-20 md:py-10 rounded-full text-2xl md:text-4xl font-black uppercase transition-all animate-pulse-fast shadow-[0_0_50px_rgba(255,122,0,0.3)]">
+            <div class="reveal flex flex-col items-center gap-4">
+                <a href="#depoimentos" onclick="goToDepoimentos(event)" class="btn-shine bg-brand-orange hover:bg-white text-black px-10 py-5 md:px-16 md:py-7 rounded-full text-xl md:text-3xl font-black uppercase transition-all animate-pulse-fast shadow-[0_0_50px_rgba(255,122,0,0.3)] cursor-pointer">
                     Quero Começar Agora
                 </a>
                 <p class="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-widest">PAGAMENTO ÚNICO - NÃO TEM MENSALIDADE</p>
@@ -385,7 +607,7 @@
     </section>
 
     <!-- Depoimentos (Carrossel) -->
-    <section id="testimonials-section" class="py-12 md:py-16 bg-brand-bg-dark border-t border-white/5 relative overflow-hidden">
+    <section id="depoimentos" class="py-12 md:py-16 bg-brand-bg-dark border-t border-white/5 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-[radial-gradient(circle_at_center,_rgba(255,122,0,0.05)_0%,_transparent_75%)] -z-10 opacity-30"></div>
         
         <div class="max-w-7xl mx-auto px-4 relative z-10">
@@ -419,7 +641,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=0d0edd69-51ab-43ef-b2f2-ea73545c32aa" 
                                 title="Depoimento 1 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -438,7 +660,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=fb5655fc-bec5-4078-a3b3-284fce251a10" 
                                 title="Depoimento 2 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -457,7 +679,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=ba69f9f7-0aaa-49e5-9bd9-b33e75aab2da" 
                                 title="Depoimento 3 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -476,7 +698,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=7cb36e33-0e67-4ef8-b920-988f80c0a460" 
                                 title="Depoimento 4 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -495,7 +717,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=7563b8ad-5513-4ba4-b436-7fa0cc181149" 
                                 title="Depoimento 5 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -514,7 +736,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=59c68dfc-48dd-42bd-b040-3f4cd1579ca5" 
                                 title="Depoimento 6 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -533,7 +755,7 @@
                                 src="https://player-vz-7f856cd6-618.tv.pandavideo.com.br/embed/?v=28480dff-37e4-48c2-8e9b-3f2d9605cc6e" 
                                 title="Depoimento 7 - Academia Teológica Prática" 
                                 frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 loading="lazy"
                                 allowfullscreen>
                             </iframe>
@@ -562,7 +784,7 @@
     </section>
 
     <!-- Planos de Assinatura -->
-    <section id="planos" class="py-12 md:py-16 bg-black px-4 relative overflow-hidden border-t border-white/5">
+    <section id="planos" class="scroll-mt-10 md:scroll-mt-16 py-12 md:py-16 bg-black px-4 relative overflow-hidden border-t border-white/5">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[180%] aspect-square bg-[radial-gradient(circle_at_center,_rgba(255,122,0,0.03)_0%,_transparent_60%)] -z-10 opacity-70"></div>
         
         <div class="max-w-7xl mx-auto relative z-10">
@@ -616,7 +838,7 @@
                                 <div class="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center text-gray-400 shrink-0">
                                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
                                 </div>
-                                <span class="text-sm md:text-base font-medium">Garantia de 30 dias</span>
+                                <span class="text-sm md:text-base font-medium">Garantia de 7 dias</span>
                             </li>
                             <li class="flex items-center gap-3 text-gray-300">
                                 <div class="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center text-gray-400 shrink-0">
@@ -644,7 +866,7 @@
 
                     <div>
                         <div class="text-center mb-2">
-                            <span class="text-gray-400 font-extrabold text-xs md:text-sm tracking-[0.2em] uppercase">PLANO PREMIUM</span>
+                            <span class="inline-block px-4 py-1.5 rounded-full bg-orange-50 border border-brand-orange/30 text-brand-orange-dark font-montserrat font-black text-sm md:text-base tracking-[0.18em] uppercase shadow-xs">PLANO PREMIUM</span>
                         </div>
 
                         <!-- 3D Mockup of the Product Box Set -->
@@ -684,7 +906,7 @@
                                 <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
                                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
                                 </div>
-                                <span class="text-sm md:text-base font-bold text-black">Garantia de 30 dias</span>
+                                <span class="text-sm md:text-base font-bold text-black">Garantia de 7 dias</span>
                             </li>
                             <li class="flex items-center gap-3 text-gray-700">
                                 <div class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0">
@@ -863,12 +1085,42 @@
     </section>
 
     <footer class="py-20 bg-black text-center border-t border-white/5">
-        <p class="text-gray-600 text-sm">© 2025 Academia Teológica Prática. Todos os direitos reservados.</p>
+        <p class="text-gray-600 text-sm">© 2026 Academia Teológica Prática. Todos os direitos reservados.</p>
     </footer>
 
 
 
     <script>
+        function goToDepoimentos(e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            }
+            const el = document.getElementById('depoimentos') || document.getElementById('testimonials-section');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                try {
+                    window.history.pushState(null, '', '#depoimentos');
+                } catch (err) {}
+            } else {
+                window.location.hash = 'depoimentos';
+            }
+        }
+
+        function goToPlanos(e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            }
+            const el = document.getElementById('planos');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                try {
+                    window.history.pushState(null, '', '#planos');
+                } catch (err) {}
+            } else {
+                window.location.hash = 'planos';
+            }
+        }
+
         function loadVideo() {
             const container = document.getElementById('video-card-container');
             if (container) {
@@ -883,8 +1135,77 @@
                         allowfullscreen>
                     </iframe>
                 `;
+                const iframe = document.getElementById('hero-lecture-video');
+                if (iframe) {
+                    const sendUnmute = () => {
+                        try {
+                            if (iframe.contentWindow) {
+                                iframe.contentWindow.postMessage({ type: 'muted_indicator_play' }, '*');
+                                iframe.contentWindow.postMessage({ type: 'volume', parameter: 1 }, '*');
+                                iframe.contentWindow.postMessage({ type: 'unmute' }, '*');
+                            }
+                        } catch(e) {}
+                    };
+                    iframe.addEventListener('load', () => {
+                        [50, 150, 300, 500, 800, 1200, 1800, 2500, 3500].forEach(ms => setTimeout(sendUnmute, ms));
+                    });
+                }
             }
         }
+
+        // Helper para garantir áudio ativo nos vídeos do PandaVideo (Apresentação e Depoimentos)
+        function unmutePandaIframe(iframe) {
+            if (!iframe || !iframe.contentWindow) return;
+            try {
+                iframe.contentWindow.postMessage({ type: 'muted_indicator_play' }, '*');
+                iframe.contentWindow.postMessage({ type: 'volume', parameter: 1 }, '*');
+                iframe.contentWindow.postMessage({ type: 'unmute' }, '*');
+            } catch (e) {}
+        }
+
+        function unmuteAllPandaVideos() {
+            document.querySelectorAll('iframe[src*="pandavideo.com.br"]').forEach(iframe => {
+                unmutePandaIframe(iframe);
+            });
+        }
+
+        // Intercepta eventos dos players do PandaVideo e ativa o som imediatamente
+        window.addEventListener('message', function(event) {
+            if (!event.data) return;
+            const msg = event.data;
+            if (
+                msg.type === 'PANDA_READY' ||
+                msg.message === 'panda_ready' ||
+                msg.message === 'panda_play' ||
+                msg.message === 'panda_timeupdate' ||
+                msg.isMutedIndicator
+            ) {
+                try {
+                    if (event.source && event.source.postMessage) {
+                        event.source.postMessage({ type: 'muted_indicator_play' }, '*');
+                        event.source.postMessage({ type: 'volume', parameter: 1 }, '*');
+                        event.source.postMessage({ type: 'unmute' }, '*');
+                    }
+                } catch(e) {}
+            }
+        });
+
+        // Interações do usuário desmutam os vídeos preventivamente
+        ['click', 'touchstart', 'pointerdown'].forEach(evt => {
+            document.addEventListener(evt, unmuteAllPandaVideos, { passive: true });
+        });
+
+        document.querySelectorAll('#carousel-viewport .snap-start').forEach(card => {
+            ['click', 'touchstart'].forEach(evt => {
+                card.addEventListener(evt, () => {
+                    const ifr = card.querySelector('iframe');
+                    if (ifr) {
+                        unmutePandaIframe(ifr);
+                        [100, 300, 600, 1000, 1500].forEach(d => setTimeout(() => unmutePandaIframe(ifr), d));
+                    }
+                }, { passive: true });
+            });
+        });
 
         const prog = document.getElementById('scroll-progress');
         let ticking = false;
@@ -958,7 +1279,14 @@
             setTimeout(updateButtonStates, 100);
             window.addEventListener('resize', updateButtonStates, { passive: true });
         }
+
+        document.querySelectorAll('a[href="#planos"]').forEach(link => {
+            link.addEventListener('click', goToPlanos);
+        });
+
+        document.querySelectorAll('a[href="#depoimentos"]').forEach(link => {
+            link.addEventListener('click', goToDepoimentos);
+        });
     </script>
-<script type="module" src="/index.tsx"></script>
 </body>
 </html>
